@@ -3,7 +3,7 @@ package faucet
 import (
 	"fmt"
 
-	"github.com/cosmos/modules/incubator/faucet/internal/types"
+	"github.com/okwme/modules/incubator/faucet/internal/types"
 	emoji "github.com/tmdvs/Go-Emoji-Utils"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"

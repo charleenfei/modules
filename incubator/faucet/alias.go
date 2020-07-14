@@ -1,8 +1,8 @@
 package faucet
 
 import (
-	"github.com/cosmos/modules/incubator/faucet/internal/keeper"
-	"github.com/cosmos/modules/incubator/faucet/internal/types"
+	"github.com/okwme/modules/incubator/faucet/internal/keeper"
+	"github.com/okwme/modules/incubator/faucet/internal/types"
 )
 
 const (

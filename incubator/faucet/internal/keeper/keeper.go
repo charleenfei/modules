@@ -8,7 +8,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	auth "github.com/cosmos/cosmos-sdk/x/auth"
-	"github.com/cosmos/modules/incubator/faucet/internal/types"
+	"github.com/okwme/modules/incubator/faucet/internal/types"
 	"github.com/tendermint/tendermint/libs/log"
 )
 

@@ -18,7 +18,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/auth"
 	"github.com/cosmos/cosmos-sdk/x/auth/client/utils"
-	"github.com/cosmos/modules/incubator/faucet/internal/types"
+	"github.com/okwme/modules/incubator/faucet/internal/types"
 )
 
 // GetTxCmd return faucet sub-command for tx

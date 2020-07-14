@@ -1,4 +1,4 @@
-module github.com/cosmos/modules/incubator/faucet
+module github.com/okwme/modules/incubator/faucet
 
 go 1.13
 

@@ -8,7 +8,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/rest"
 	"github.com/cosmos/cosmos-sdk/x/auth/client/utils"
-	"github.com/cosmos/modules/incubator/faucet/internal/types"
+	"github.com/okwme/modules/incubator/faucet/internal/types"
 )
 
 // PostProposalReq defines the properties of a proposal request's body.

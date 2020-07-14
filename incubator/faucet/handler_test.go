@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/require"
 	emoji "github.com/tmdvs/Go-Emoji-Utils"
 
-	"github.com/cosmos/modules/incubator/faucet/internal/types"
+	"github.com/okwme/modules/incubator/faucet/internal/types"
 	"github.com/tendermint/tendermint/crypto"
 )
 
