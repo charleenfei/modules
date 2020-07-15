@@ -52,7 +52,6 @@ func (k Keeper) Logger(ctx sdk.Context) log.Logger {
 
 // MintAndSend mint coins and send to minter.
 func (k Keeper) MintAndSend(ctx sdk.Context, minter sdk.AccAddress, mintTime int64, denom string) error {
-
 	if denom == k.StakingKeeper.BondDenom(ctx) {
 		return types.ErrCantWithdrawStake
 	}
@@ -64,15 +63,14 @@ func (k Keeper) MintAndSend(ctx sdk.Context, minter sdk.AccAddress, mintTime int
 		time.Unix(mining.LastTime, 0).Add(k.Limit).UTC().After(time.Unix(mintTime, 0)) {
 		return types.ErrWithdrawTooOften
 	}
-
 	newCoin := sdk.NewCoin(denom, sdk.NewInt(k.amount))
 	mining.Tally = mining.Tally + k.amount
 	mining.LastTime = mintTime
 	k.setMining(ctx, minter, mining)
 
 	k.Logger(ctx).Info("Mint coin: %s", newCoin)
-
-	err := k.SupplyKeeper.MintCoins(ctx, types.ModuleName, sdk.NewCoins(newCoin))
+	newCoins := sdk.NewCoins(newCoin)
+	err := k.SupplyKeeper.MintCoins(ctx, types.ModuleName, newCoins)
 	if err != nil {
 		return err
 	}

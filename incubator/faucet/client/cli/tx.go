@@ -157,7 +157,6 @@ func GetCmdInitial(cdc *codec.Codec) *cobra.Command {
 			}
 			// import to keybase
 			kb.Import(types.ModuleName, rkey.Armor)
-			fmt.Println("The faucet has been loaded successfully.")
 			return nil
 
 		},

@@ -2,34 +2,42 @@ package faucet
 
 import (
 	"fmt"
+	"regexp"
 	"testing"
 	"time"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/kyokomi/emoji"
 	"github.com/stretchr/testify/require"
-	emoji "github.com/tmdvs/Go-Emoji-Utils"
 
 	"github.com/okwme/modules/incubator/faucet/internal/types"
 	"github.com/tendermint/tendermint/crypto"
 )
 
 func TestEmoji(t *testing.T) {
-
-	moduleAcct := sdk.AccAddress(crypto.AddressHash([]byte("foobar")))
+	moduleAcct := sdk.AccAddress(crypto.AddressHash([]byte("foo")))
+	moduleAcct2 := sdk.AccAddress(crypto.AddressHash([]byte("bar")))
 	denom := "🥵"
-	msg := types.NewMsgMint(moduleAcct, moduleAcct, time.Now().Unix(), denom)
+	msg := types.NewMsgMint(moduleAcct, moduleAcct2, time.Now().Unix(), denom)
+
 	err := msg.ValidateBasic()
 	require.NoError(t, err)
 
-	results := emoji.FindAll(msg.Denom)
-	if len(results) != 1 {
-		fmt.Println("results did not equal 1")
+	msg.Denom = emoji.Sprint(msg.Denom)
+	codeWords := emoji.RevCodeMap()[msg.Denom]
+
+	reg, err := regexp.Compile("[^a-zA-Z0-9 ]+")
+	if err != nil {
+		require.NoError(t, err)
+	}
+
+	if len(codeWords) > 0 {
+		msg.Denom = reg.ReplaceAllString(codeWords[0], "")
+		require.True(t, true)
+	} else {
+		fmt.Println("failed to find emoji in msg.Denom", msg.Denom)
 		require.True(t, false)
 	}
-	emo, ok := results[0].Match.(emoji.Emoji)
-	if !ok {
-		fmt.Println("Not correct interface for Emoji")
-		require.True(t, false)
-	}
-	fmt.Println(emo.Value)
+	fmt.Println("final msg.Denom", msg.Denom)
+	// require.True(t, false)
 }
