@@ -3,7 +3,7 @@ package types
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/kyokomi/emoji"
+	emoji "github.com/tmdvs/Go-Emoji-Utils"
 )
 
 // RouterKey is the module name router key
@@ -39,10 +39,8 @@ func (msg MsgMint) ValidateBasic() error {
 	if msg.Sender.Equals(msg.Minter) {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, "Can't mint to yourself")
 	}
-
-	msg.Denom = emoji.Sprint(msg.Denom)
-	codeWords := emoji.RevCodeMap()[msg.Denom]
-	if len(codeWords) == 0 {
+	results := emoji.FindAll(msg.Denom)
+	if len(results) != 1 {
 		return ErrNoEmoji
 	}
 

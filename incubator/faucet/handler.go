@@ -7,7 +7,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/kyokomi/emoji"
+	emoji "github.com/tmdvs/Go-Emoji-Utils"
 )
 
 // NewHandler returns a handler for "faucet" type messages.
@@ -26,20 +26,22 @@ func NewHandler(keeper Keeper) sdk.Handler {
 
 // Handle a message to Mint
 func handleMsgMint(ctx sdk.Context, keeper Keeper, msg types.MsgMint) (*sdk.Result, error) {
+	keeper.Logger(ctx).Info("received mint message: %s", msg)
 
-	msg.Denom = emoji.Sprint(msg.Denom)
-	codeWords := emoji.RevCodeMap()[msg.Denom]
-	if len(codeWords) > 0 {
-		msg.Denom = codeWords[0]
-	} else {
-		fmt.Println(msg.Denom)
+	results := emoji.FindAll(msg.Denom)
+	if len(results) != 1 {
 		return nil, types.ErrNoEmoji
 	}
+	emo, ok := results[0].Match.(emoji.Emoji)
+	if !ok {
+		return nil, types.ErrNoEmoji
+	}
+	msg.Denom = emo.Value
 
 	err := keeper.MintAndSend(ctx, msg.Minter, msg.Time, msg.Denom)
 	if err != nil {
 		fmt.Println("err", err)
-		return nil, sdkerrors.Wrap(err, fmt.Sprintf(",in [%v] hours", keeper.Limit.Hours()))
+		return nil, sdkerrors.Wrap(err, fmt.Sprintf(" in [%v] hours", keeper.Limit.Hours()))
 	}
 
 	return &sdk.Result{}, nil // return
