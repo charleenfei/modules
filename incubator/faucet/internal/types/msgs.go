@@ -13,7 +13,6 @@ const RouterKey = ModuleName // this was defined in your key.go file
 type MsgMint struct {
 	Sender sdk.AccAddress
 	Minter sdk.AccAddress
-	Time   int64
 	Denom  string
 }
 

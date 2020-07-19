@@ -52,12 +52,12 @@ func (k Keeper) Logger(ctx sdk.Context) log.Logger {
 
 // MintAndSend mint coins and send to receiver.
 func (k Keeper) MintAndSend(ctx sdk.Context, sender sdk.AccAddress, receiver sdk.AccAddress, mintTime int64, denom string) error {
+
 	if denom == k.StakingKeeper.BondDenom(ctx) {
 		return types.ErrCantWithdrawStake
 	}
 
-	mining := k.getMining(ctx, sender, denom)
-
+	mining := k.getMining(ctx, sender)
 	// refuse mint in 24 hours
 	if k.isPresent(ctx, sender) &&
 		time.Unix(mining.LastTime, 0).Add(k.Limit).UTC().After(time.Unix(mintTime, 0)) {
@@ -67,7 +67,6 @@ func (k Keeper) MintAndSend(ctx sdk.Context, sender sdk.AccAddress, receiver sdk
 	mining.Tally = mining.Tally + k.amount
 	mining.LastTime = mintTime
 	k.setMining(ctx, sender, mining)
-
 	k.Logger(ctx).Info("Mint coin: %s", newCoin)
 	newCoins := sdk.NewCoins(newCoin)
 	err := k.SupplyKeeper.MintCoins(ctx, types.ModuleName, newCoins)
@@ -87,10 +86,9 @@ func (k Keeper) MintAndSend(ctx sdk.Context, sender sdk.AccAddress, receiver sdk
 	return nil
 }
 
-func (k Keeper) getMining(ctx sdk.Context, minter sdk.AccAddress, denom string) types.Mining {
+func (k Keeper) getMining(ctx sdk.Context, minter sdk.AccAddress) types.Mining {
 	store := ctx.KVStore(k.storeKey)
 	if !k.isPresent(ctx, minter) {
-		// denom := k.StakingKeeper.BondDenom(ctx)
 		return types.NewMining(minter, 0)
 	}
 	bz := store.Get(minter.Bytes())
