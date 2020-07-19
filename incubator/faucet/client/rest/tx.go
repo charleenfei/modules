@@ -2,7 +2,6 @@ package rest
 
 import (
 	"net/http"
-	"time"
 
 	"github.com/cosmos/cosmos-sdk/client/context"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -46,7 +45,7 @@ func mintHandlerFn(cliCtx context.CLIContext) http.HandlerFunc {
 		denom := req.Denom
 
 		// create the message
-		msg := types.NewMsgMint(sender, minter, time.Now().Unix(), denom)
+		msg := types.NewMsgMint(sender, minter, denom)
 		err = msg.ValidateBasic()
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusBadRequest, err.Error())

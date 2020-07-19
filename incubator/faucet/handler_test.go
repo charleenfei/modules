@@ -3,7 +3,6 @@ package faucet
 import (
 	"fmt"
 	"testing"
-	"time"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
@@ -17,7 +16,7 @@ func TestEmoji(t *testing.T) {
 	moduleAcct := sdk.AccAddress(crypto.AddressHash([]byte("foo")))
 	moduleAcct2 := sdk.AccAddress(crypto.AddressHash([]byte("bar")))
 	denom := "🥵"
-	msg := types.NewMsgMint(moduleAcct, moduleAcct2, time.Now().Unix(), denom)
+	msg := types.NewMsgMint(moduleAcct, moduleAcct2, denom)
 
 	err := msg.ValidateBasic()
 	require.NoError(t, err)

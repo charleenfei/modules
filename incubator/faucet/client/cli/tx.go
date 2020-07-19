@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
-	"time"
 
 	"github.com/cosmos/cosmos-sdk/crypto/keys"
 	"github.com/spf13/viper"
@@ -54,7 +53,7 @@ func GetCmdMint(cdc *codec.Codec) *cobra.Command {
 			txBldr := auth.NewTxBuilderFromCLI(inBuf).WithTxEncoder(utils.GetTxEncoder(cdc))
 			denom := args[0]
 
-			msg := types.NewMsgMint(cliCtx.GetFromAddress(), cliCtx.GetFromAddress(), time.Now().Unix(), denom)
+			msg := types.NewMsgMint(cliCtx.GetFromAddress(), cliCtx.GetFromAddress(), denom)
 			err := msg.ValidateBasic()
 			if err != nil {
 				return err
@@ -80,7 +79,7 @@ func GetCmdMintFor(cdc *codec.Codec) *cobra.Command {
 			address, _ := sdk.AccAddressFromBech32(args[0])
 
 			denom := args[1]
-			msg := types.NewMsgMint(cliCtx.GetFromAddress(), address, time.Now().Unix(), denom)
+			msg := types.NewMsgMint(cliCtx.GetFromAddress(), address, denom)
 			err := msg.ValidateBasic()
 			if err != nil {
 				return err

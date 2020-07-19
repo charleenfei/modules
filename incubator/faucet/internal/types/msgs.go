@@ -18,8 +18,8 @@ type MsgMint struct {
 }
 
 // NewMsgMint is a constructor function for NewMsgMint
-func NewMsgMint(sender sdk.AccAddress, minter sdk.AccAddress, mTime int64, denom string) MsgMint {
-	return MsgMint{Sender: sender, Minter: minter, Time: mTime, Denom: denom}
+func NewMsgMint(sender sdk.AccAddress, minter sdk.AccAddress, denom string) MsgMint {
+	return MsgMint{Sender: sender, Minter: minter, Denom: denom}
 }
 
 // Route should return the name of the module

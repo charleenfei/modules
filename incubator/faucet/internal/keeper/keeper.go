@@ -50,23 +50,23 @@ func (k Keeper) Logger(ctx sdk.Context) log.Logger {
 	return ctx.Logger().With("module", fmt.Sprintf("x/%s", types.ModuleName))
 }
 
-// MintAndSend mint coins and send to minter.
-func (k Keeper) MintAndSend(ctx sdk.Context, minter sdk.AccAddress, mintTime int64, denom string) error {
+// MintAndSend mint coins and send to receiver.
+func (k Keeper) MintAndSend(ctx sdk.Context, sender sdk.AccAddress, receiver sdk.AccAddress, mintTime int64, denom string) error {
 	if denom == k.StakingKeeper.BondDenom(ctx) {
 		return types.ErrCantWithdrawStake
 	}
 
-	mining := k.getMining(ctx, minter, denom)
+	mining := k.getMining(ctx, sender, denom)
 
 	// refuse mint in 24 hours
-	if k.isPresent(ctx, minter) &&
+	if k.isPresent(ctx, sender) &&
 		time.Unix(mining.LastTime, 0).Add(k.Limit).UTC().After(time.Unix(mintTime, 0)) {
 		return types.ErrWithdrawTooOften
 	}
 	newCoin := sdk.NewCoin(denom, sdk.NewInt(k.amount))
 	mining.Tally = mining.Tally + k.amount
 	mining.LastTime = mintTime
-	k.setMining(ctx, minter, mining)
+	k.setMining(ctx, sender, mining)
 
 	k.Logger(ctx).Info("Mint coin: %s", newCoin)
 	newCoins := sdk.NewCoins(newCoin)
@@ -75,12 +75,12 @@ func (k Keeper) MintAndSend(ctx sdk.Context, minter sdk.AccAddress, mintTime int
 		return err
 	}
 
-	minterAccount := k.AccountKeeper.GetAccount(ctx, minter)
-	if minterAccount == nil {
-		return sdkerrors.Wrapf(sdkerrors.ErrUnauthorized, "%s does not exist and is not allowed to receive tokens", minter)
+	receiverAccount := k.AccountKeeper.GetAccount(ctx, receiver)
+	if receiverAccount == nil {
+		return sdkerrors.Wrapf(sdkerrors.ErrUnauthorized, "%s does not exist and is not allowed to receive tokens", receiver)
 	}
 
-	err = k.SupplyKeeper.SendCoinsFromModuleToAccount(ctx, types.ModuleName, minter, sdk.NewCoins(newCoin))
+	err = k.SupplyKeeper.SendCoinsFromModuleToAccount(ctx, types.ModuleName, receiver, sdk.NewCoins(newCoin))
 	if err != nil {
 		return err
 	}

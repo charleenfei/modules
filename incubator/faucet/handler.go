@@ -38,7 +38,9 @@ func handleMsgMint(ctx sdk.Context, keeper Keeper, msg types.MsgMint) (*sdk.Resu
 	}
 	msg.Denom = emo.Value
 
-	err := keeper.MintAndSend(ctx, msg.Minter, msg.Time, msg.Denom)
+	time := ctx.BlockTime().Unix()
+
+	err := keeper.MintAndSend(ctx, msg.Sender, msg.Minter, time, msg.Denom)
 	if err != nil {
 		fmt.Println("err", err)
 		return nil, sdkerrors.Wrap(err, fmt.Sprintf(" in [%v] hours", keeper.Limit.Hours()))
