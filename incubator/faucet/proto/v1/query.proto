@@ -10,26 +10,16 @@ option go_package = "github.com/charleenfei/modules/incubator/faucet/internal/ty
 
 // Query defines the gRPC querier service for the faucet module.
 service Query {
-      // Mining queries the faucet module mining
-    rpc QueryMining(QueryMiningRequest) returns (QueryMiningResponse) {
+      // WhenBrr queries the last time an address minted 
+    rpc QueryWhenBrr(QueryWhenBrrRequest) returns (QueryWhenBrrResponse) {
         option (google.api.http).get = "/whenBrr/{address}";
-    }
-     // Mint queries the faucet module mint
-    rpc QueryFaucet(QueryFaucetRequest) returns (QueryFaucetResponse) {
-        option (google.api.http).get = "/key";
     }
 }
 
-message QueryMiningRequest {
+message QueryWhenBrrRequest {
     string address = 1;
 }
 
-message QueryMiningResponse {
+message QueryWhenBrrResponse {
     int64 timeLeft = 1;
-}
-
-message QueryFaucetRequest {}
-
-message QueryFaucetResponse {
-    string key = 1;
 }

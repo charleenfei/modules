@@ -31,22 +31,22 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type QueryMiningRequest struct {
+type QueryWhenBrrRequest struct {
 	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
 }
 
-func (m *QueryMiningRequest) Reset()         { *m = QueryMiningRequest{} }
-func (m *QueryMiningRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryMiningRequest) ProtoMessage()    {}
-func (*QueryMiningRequest) Descriptor() ([]byte, []int) {
+func (m *QueryWhenBrrRequest) Reset()         { *m = QueryWhenBrrRequest{} }
+func (m *QueryWhenBrrRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryWhenBrrRequest) ProtoMessage()    {}
+func (*QueryWhenBrrRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_0801432bccbe1b86, []int{0}
 }
-func (m *QueryMiningRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryWhenBrrRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryMiningRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryWhenBrrRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryMiningRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryWhenBrrRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -56,41 +56,41 @@ func (m *QueryMiningRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
-func (m *QueryMiningRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryMiningRequest.Merge(m, src)
+func (m *QueryWhenBrrRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryWhenBrrRequest.Merge(m, src)
 }
-func (m *QueryMiningRequest) XXX_Size() int {
+func (m *QueryWhenBrrRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryMiningRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryMiningRequest.DiscardUnknown(m)
+func (m *QueryWhenBrrRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryWhenBrrRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryMiningRequest proto.InternalMessageInfo
+var xxx_messageInfo_QueryWhenBrrRequest proto.InternalMessageInfo
 
-func (m *QueryMiningRequest) GetAddress() string {
+func (m *QueryWhenBrrRequest) GetAddress() string {
 	if m != nil {
 		return m.Address
 	}
 	return ""
 }
 
-type QueryMiningResponse struct {
+type QueryWhenBrrResponse struct {
 	TimeLeft int64 `protobuf:"varint,1,opt,name=timeLeft,proto3" json:"timeLeft,omitempty"`
 }
 
-func (m *QueryMiningResponse) Reset()         { *m = QueryMiningResponse{} }
-func (m *QueryMiningResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryMiningResponse) ProtoMessage()    {}
-func (*QueryMiningResponse) Descriptor() ([]byte, []int) {
+func (m *QueryWhenBrrResponse) Reset()         { *m = QueryWhenBrrResponse{} }
+func (m *QueryWhenBrrResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryWhenBrrResponse) ProtoMessage()    {}
+func (*QueryWhenBrrResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_0801432bccbe1b86, []int{1}
 }
-func (m *QueryMiningResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryWhenBrrResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryMiningResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryWhenBrrResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryMiningResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryWhenBrrResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -100,139 +100,54 @@ func (m *QueryMiningResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
-func (m *QueryMiningResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryMiningResponse.Merge(m, src)
+func (m *QueryWhenBrrResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryWhenBrrResponse.Merge(m, src)
 }
-func (m *QueryMiningResponse) XXX_Size() int {
+func (m *QueryWhenBrrResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryMiningResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryMiningResponse.DiscardUnknown(m)
+func (m *QueryWhenBrrResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryWhenBrrResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryMiningResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryWhenBrrResponse proto.InternalMessageInfo
 
-func (m *QueryMiningResponse) GetTimeLeft() int64 {
+func (m *QueryWhenBrrResponse) GetTimeLeft() int64 {
 	if m != nil {
 		return m.TimeLeft
 	}
 	return 0
 }
 
-type QueryFaucetRequest struct {
-}
-
-func (m *QueryFaucetRequest) Reset()         { *m = QueryFaucetRequest{} }
-func (m *QueryFaucetRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryFaucetRequest) ProtoMessage()    {}
-func (*QueryFaucetRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0801432bccbe1b86, []int{2}
-}
-func (m *QueryFaucetRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryFaucetRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryFaucetRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryFaucetRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryFaucetRequest.Merge(m, src)
-}
-func (m *QueryFaucetRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryFaucetRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryFaucetRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryFaucetRequest proto.InternalMessageInfo
-
-type QueryFaucetResponse struct {
-	Key string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
-}
-
-func (m *QueryFaucetResponse) Reset()         { *m = QueryFaucetResponse{} }
-func (m *QueryFaucetResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryFaucetResponse) ProtoMessage()    {}
-func (*QueryFaucetResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0801432bccbe1b86, []int{3}
-}
-func (m *QueryFaucetResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryFaucetResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryFaucetResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryFaucetResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryFaucetResponse.Merge(m, src)
-}
-func (m *QueryFaucetResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryFaucetResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryFaucetResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryFaucetResponse proto.InternalMessageInfo
-
-func (m *QueryFaucetResponse) GetKey() string {
-	if m != nil {
-		return m.Key
-	}
-	return ""
-}
-
 func init() {
-	proto.RegisterType((*QueryMiningRequest)(nil), "faucet.v1.QueryMiningRequest")
-	proto.RegisterType((*QueryMiningResponse)(nil), "faucet.v1.QueryMiningResponse")
-	proto.RegisterType((*QueryFaucetRequest)(nil), "faucet.v1.QueryFaucetRequest")
-	proto.RegisterType((*QueryFaucetResponse)(nil), "faucet.v1.QueryFaucetResponse")
+	proto.RegisterType((*QueryWhenBrrRequest)(nil), "faucet.v1.QueryWhenBrrRequest")
+	proto.RegisterType((*QueryWhenBrrResponse)(nil), "faucet.v1.QueryWhenBrrResponse")
 }
 
 func init() { proto.RegisterFile("v1/query.proto", fileDescriptor_0801432bccbe1b86) }
 
 var fileDescriptor_0801432bccbe1b86 = []byte{
-	// 367 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x91, 0xbf, 0x4e, 0xeb, 0x30,
-	0x14, 0xc6, 0x9b, 0xdb, 0x4b, 0xa1, 0x06, 0x21, 0x64, 0x3a, 0xb4, 0x11, 0x44, 0x28, 0x0b, 0x4c,
-	0xb1, 0x0a, 0x3b, 0x43, 0x07, 0x26, 0x18, 0xe8, 0x84, 0xba, 0x20, 0x27, 0x3d, 0x49, 0xac, 0x26,
-	0x76, 0x6a, 0x3b, 0x45, 0x11, 0x62, 0xe1, 0x09, 0x90, 0x78, 0x29, 0x16, 0xa4, 0x4a, 0x2c, 0x8c,
-	0xa8, 0xe5, 0x41, 0x50, 0x13, 0xb7, 0xa2, 0xaa, 0xd8, 0xce, 0x77, 0xfe, 0xfd, 0xce, 0x67, 0xa3,
-	0xfd, 0x49, 0x97, 0x8c, 0x73, 0x90, 0x85, 0x97, 0x49, 0xa1, 0x05, 0x6e, 0x86, 0x34, 0x0f, 0x40,
-	0x7b, 0x93, 0xae, 0xdd, 0x09, 0x84, 0x4a, 0x85, 0xba, 0x2f, 0x0b, 0xa4, 0x12, 0x55, 0x97, 0x7d,
-	0x14, 0x09, 0x11, 0x25, 0x40, 0x68, 0xc6, 0x08, 0xe5, 0x5c, 0x68, 0xaa, 0x99, 0xe0, 0xcb, 0x6a,
-	0x2b, 0x12, 0x91, 0xa8, 0xa6, 0x16, 0x91, 0xc9, 0x76, 0xcc, 0x4c, 0xa9, 0xfc, 0x3c, 0x24, 0x94,
-	0x1b, 0xa8, 0xeb, 0x21, 0x7c, 0xbb, 0xb8, 0xe1, 0x86, 0x71, 0xc6, 0xa3, 0x3e, 0x8c, 0x73, 0x50,
-	0x1a, 0xb7, 0xd1, 0x36, 0x1d, 0x0e, 0x25, 0x28, 0xd5, 0xb6, 0x4e, 0xac, 0xb3, 0x66, 0x7f, 0x29,
-	0xdd, 0x2e, 0x3a, 0x5c, 0xeb, 0x57, 0x99, 0xe0, 0x0a, 0xb0, 0x8d, 0x76, 0x34, 0x4b, 0xe1, 0x1a,
-	0x42, 0x5d, 0x4e, 0xd4, 0xfb, 0x2b, 0xed, 0xb6, 0x0c, 0xe2, 0xaa, 0xb4, 0x67, 0x10, 0xee, 0xa9,
-	0x59, 0xb4, 0xcc, 0x9a, 0x45, 0x07, 0xa8, 0x3e, 0x82, 0xc2, 0x50, 0x17, 0xe1, 0xf9, 0xbb, 0x85,
-	0xb6, 0xca, 0x4e, 0x1c, 0xa3, 0xdd, 0x5f, 0x6c, 0x7c, 0xec, 0xad, 0x1e, 0xcc, 0xdb, 0xf4, 0x60,
-	0x3b, 0x7f, 0x95, 0x2b, 0x92, 0x6b, 0x3f, 0x7f, 0x7c, 0xbf, 0xfe, 0x6b, 0x61, 0x4c, 0x1e, 0x62,
-	0xe0, 0x3d, 0x29, 0xc9, 0xa3, 0x31, 0xf9, 0x84, 0x07, 0x86, 0x54, 0x1d, 0xb7, 0x49, 0x5a, 0xb3,
-	0xb2, 0x49, 0x5a, 0xf7, 0xe4, 0xee, 0x95, 0xa4, 0x06, 0xfe, 0x4f, 0x46, 0x50, 0xf4, 0xee, 0xde,
-	0x66, 0x8e, 0x35, 0x9d, 0x39, 0xd6, 0xd7, 0xcc, 0xb1, 0x5e, 0xe6, 0x4e, 0x6d, 0x3a, 0x77, 0x6a,
-	0x9f, 0x73, 0xa7, 0x36, 0xb8, 0x8c, 0x98, 0x8e, 0x73, 0xdf, 0x0b, 0x44, 0x4a, 0x82, 0x98, 0xca,
-	0x04, 0x80, 0x87, 0xc0, 0x48, 0x2a, 0x86, 0x79, 0x02, 0x8a, 0x30, 0x1e, 0xe4, 0x3e, 0xd5, 0x42,
-	0x92, 0x8a, 0x47, 0x18, 0xd7, 0x20, 0x39, 0x4d, 0x88, 0x2e, 0x32, 0x50, 0x7e, 0xa3, 0xfc, 0xd2,
-	0x8b, 0x9f, 0x00, 0x00, 0x00, 0xff, 0xff, 0xde, 0xa2, 0x73, 0x1f, 0x59, 0x02, 0x00, 0x00,
+	// 313 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x90, 0xbd, 0x4e, 0xc3, 0x40,
+	0x10, 0x84, 0x63, 0x10, 0x3f, 0xb1, 0x10, 0xc5, 0x91, 0x22, 0xb1, 0xd0, 0x81, 0x52, 0x51, 0x79,
+	0x95, 0xd0, 0x53, 0xa4, 0xa6, 0x21, 0x0d, 0x88, 0x06, 0x9d, 0x9d, 0xb5, 0x73, 0xc2, 0xbe, 0x75,
+	0xee, 0x27, 0x28, 0x42, 0x34, 0x3c, 0x01, 0x12, 0x2f, 0x45, 0x19, 0x89, 0x86, 0x12, 0x25, 0x3c,
+	0x08, 0x8a, 0xed, 0x44, 0x20, 0x41, 0x77, 0x73, 0xb3, 0x9f, 0x66, 0x76, 0xfd, 0xc3, 0x69, 0x0f,
+	0x26, 0x0e, 0xf5, 0x2c, 0x2c, 0x34, 0x59, 0x62, 0xcd, 0x44, 0xb8, 0x18, 0x6d, 0x38, 0xed, 0x05,
+	0x9d, 0x98, 0x4c, 0x4e, 0xe6, 0xae, 0x34, 0xa0, 0x12, 0xd5, 0x54, 0x70, 0x9c, 0x12, 0xa5, 0x19,
+	0x82, 0x28, 0x24, 0x08, 0xa5, 0xc8, 0x0a, 0x2b, 0x49, 0xad, 0xdd, 0x56, 0x4a, 0x29, 0x55, 0xd4,
+	0xea, 0x55, 0xff, 0x76, 0x6a, 0xa6, 0x54, 0x91, 0x4b, 0x40, 0xa8, 0x3a, 0xb4, 0x0b, 0xfe, 0xd1,
+	0xd5, 0xaa, 0xc3, 0xf5, 0x18, 0xd5, 0x40, 0xeb, 0x21, 0x4e, 0x1c, 0x1a, 0xcb, 0xda, 0xfe, 0x9e,
+	0x18, 0x8d, 0x34, 0x1a, 0xd3, 0xf6, 0x4e, 0xbd, 0xb3, 0xe6, 0x70, 0x2d, 0xbb, 0x7d, 0xbf, 0xf5,
+	0x1b, 0x30, 0x05, 0x29, 0x83, 0x2c, 0xf0, 0xf7, 0xad, 0xcc, 0xf1, 0x12, 0x13, 0x5b, 0x22, 0xdb,
+	0xc3, 0x8d, 0xee, 0x5b, 0x7f, 0xa7, 0x64, 0xd8, 0xbd, 0x7f, 0xf0, 0x13, 0x66, 0x3c, 0xdc, 0xec,
+	0x1c, 0xfe, 0x51, 0x23, 0x38, 0xf9, 0xd7, 0xaf, 0x52, 0xbb, 0xc1, 0xf3, 0xfb, 0xd7, 0xeb, 0x56,
+	0x8b, 0x31, 0x78, 0xa8, 0x1c, 0x78, 0xac, 0x8b, 0x3e, 0x0d, 0x6e, 0xde, 0x16, 0xdc, 0x9b, 0x2f,
+	0xb8, 0xf7, 0xb9, 0xe0, 0xde, 0xcb, 0x92, 0x37, 0xe6, 0x4b, 0xde, 0xf8, 0x58, 0xf2, 0xc6, 0xed,
+	0x45, 0x2a, 0xed, 0xd8, 0x45, 0x61, 0x4c, 0x39, 0xc4, 0x63, 0xa1, 0x33, 0x44, 0x95, 0xa0, 0x84,
+	0x9c, 0x46, 0x2e, 0x43, 0x03, 0x52, 0xc5, 0x2e, 0x12, 0x96, 0x34, 0x54, 0xf1, 0x20, 0x95, 0x45,
+	0xad, 0x44, 0x06, 0x76, 0x56, 0xa0, 0x89, 0x76, 0xcb, 0xdb, 0x9d, 0x7f, 0x07, 0x00, 0x00, 0xff,
+	0xff, 0x8f, 0x8e, 0xab, 0xa7, 0xc2, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -247,10 +162,8 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type QueryClient interface {
-	// Mining queries the faucet module mining
-	QueryMining(ctx context.Context, in *QueryMiningRequest, opts ...grpc.CallOption) (*QueryMiningResponse, error)
-	// Mint queries the faucet module mint
-	QueryFaucet(ctx context.Context, in *QueryFaucetRequest, opts ...grpc.CallOption) (*QueryFaucetResponse, error)
+	// WhenBrr queries the last time an address minted
+	QueryWhenBrr(ctx context.Context, in *QueryWhenBrrRequest, opts ...grpc.CallOption) (*QueryWhenBrrResponse, error)
 }
 
 type queryClient struct {
@@ -261,18 +174,9 @@ func NewQueryClient(cc grpc1.ClientConn) QueryClient {
 	return &queryClient{cc}
 }
 
-func (c *queryClient) QueryMining(ctx context.Context, in *QueryMiningRequest, opts ...grpc.CallOption) (*QueryMiningResponse, error) {
-	out := new(QueryMiningResponse)
-	err := c.cc.Invoke(ctx, "/faucet.v1.Query/QueryMining", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *queryClient) QueryFaucet(ctx context.Context, in *QueryFaucetRequest, opts ...grpc.CallOption) (*QueryFaucetResponse, error) {
-	out := new(QueryFaucetResponse)
-	err := c.cc.Invoke(ctx, "/faucet.v1.Query/QueryFaucet", in, out, opts...)
+func (c *queryClient) QueryWhenBrr(ctx context.Context, in *QueryWhenBrrRequest, opts ...grpc.CallOption) (*QueryWhenBrrResponse, error) {
+	out := new(QueryWhenBrrResponse)
+	err := c.cc.Invoke(ctx, "/faucet.v1.Query/QueryWhenBrr", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -281,59 +185,36 @@ func (c *queryClient) QueryFaucet(ctx context.Context, in *QueryFaucetRequest, o
 
 // QueryServer is the server API for Query service.
 type QueryServer interface {
-	// Mining queries the faucet module mining
-	QueryMining(context.Context, *QueryMiningRequest) (*QueryMiningResponse, error)
-	// Mint queries the faucet module mint
-	QueryFaucet(context.Context, *QueryFaucetRequest) (*QueryFaucetResponse, error)
+	// WhenBrr queries the last time an address minted
+	QueryWhenBrr(context.Context, *QueryWhenBrrRequest) (*QueryWhenBrrResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
 type UnimplementedQueryServer struct {
 }
 
-func (*UnimplementedQueryServer) QueryMining(ctx context.Context, req *QueryMiningRequest) (*QueryMiningResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryMining not implemented")
-}
-func (*UnimplementedQueryServer) QueryFaucet(ctx context.Context, req *QueryFaucetRequest) (*QueryFaucetResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryFaucet not implemented")
+func (*UnimplementedQueryServer) QueryWhenBrr(ctx context.Context, req *QueryWhenBrrRequest) (*QueryWhenBrrResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryWhenBrr not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
 	s.RegisterService(&_Query_serviceDesc, srv)
 }
 
-func _Query_QueryMining_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryMiningRequest)
+func _Query_QueryWhenBrr_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryWhenBrrRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).QueryMining(ctx, in)
+		return srv.(QueryServer).QueryWhenBrr(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/faucet.v1.Query/QueryMining",
+		FullMethod: "/faucet.v1.Query/QueryWhenBrr",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).QueryMining(ctx, req.(*QueryMiningRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Query_QueryFaucet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryFaucetRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(QueryServer).QueryFaucet(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/faucet.v1.Query/QueryFaucet",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).QueryFaucet(ctx, req.(*QueryFaucetRequest))
+		return srv.(QueryServer).QueryWhenBrr(ctx, req.(*QueryWhenBrrRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -343,19 +224,15 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*QueryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "QueryMining",
-			Handler:    _Query_QueryMining_Handler,
-		},
-		{
-			MethodName: "QueryFaucet",
-			Handler:    _Query_QueryFaucet_Handler,
+			MethodName: "QueryWhenBrr",
+			Handler:    _Query_QueryWhenBrr_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "v1/query.proto",
 }
 
-func (m *QueryMiningRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryWhenBrrRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -365,12 +242,12 @@ func (m *QueryMiningRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryMiningRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryWhenBrrRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryMiningRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryWhenBrrRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -385,7 +262,7 @@ func (m *QueryMiningRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryMiningResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryWhenBrrResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -395,12 +272,12 @@ func (m *QueryMiningResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryMiningResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryWhenBrrResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryMiningResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryWhenBrrResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -409,59 +286,6 @@ func (m *QueryMiningResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i = encodeVarintQuery(dAtA, i, uint64(m.TimeLeft))
 		i--
 		dAtA[i] = 0x8
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryFaucetRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryFaucetRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryFaucetRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	return len(dAtA) - i, nil
-}
-
-func (m *QueryFaucetResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *QueryFaucetResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *QueryFaucetResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Key) > 0 {
-		i -= len(m.Key)
-		copy(dAtA[i:], m.Key)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Key)))
-		i--
-		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -477,7 +301,7 @@ func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *QueryMiningRequest) Size() (n int) {
+func (m *QueryWhenBrrRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -490,7 +314,7 @@ func (m *QueryMiningRequest) Size() (n int) {
 	return n
 }
 
-func (m *QueryMiningResponse) Size() (n int) {
+func (m *QueryWhenBrrResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -502,35 +326,13 @@ func (m *QueryMiningResponse) Size() (n int) {
 	return n
 }
 
-func (m *QueryFaucetRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	return n
-}
-
-func (m *QueryFaucetResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Key)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	return n
-}
-
 func sovQuery(x uint64) (n int) {
 	return (math_bits.Len64(x|1) + 6) / 7
 }
 func sozQuery(x uint64) (n int) {
 	return sovQuery(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *QueryMiningRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryWhenBrrRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -553,10 +355,10 @@ func (m *QueryMiningRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryMiningRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryWhenBrrRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryMiningRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryWhenBrrRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -612,7 +414,7 @@ func (m *QueryMiningRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryMiningResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryWhenBrrResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -635,10 +437,10 @@ func (m *QueryMiningResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryMiningResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryWhenBrrResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryMiningResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryWhenBrrResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -660,138 +462,6 @@ func (m *QueryMiningResponse) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryFaucetRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryFaucetRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryFaucetRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipQuery(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *QueryFaucetResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowQuery
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: QueryFaucetResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryFaucetResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Key", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Key = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipQuery(dAtA[iNdEx:])

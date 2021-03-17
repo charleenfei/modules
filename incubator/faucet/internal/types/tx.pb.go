@@ -126,231 +126,35 @@ func (m *MsgMintResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgMintResponse proto.InternalMessageInfo
 
-type MsgFaucetKey struct {
-	Sender string `protobuf:"bytes,1,opt,name=sender,proto3" json:"sender,omitempty" yaml:"sender"`
-	Armor  string `protobuf:"bytes,2,opt,name=armor,proto3" json:"armor,omitempty" yaml:"armor"`
-}
-
-func (m *MsgFaucetKey) Reset()         { *m = MsgFaucetKey{} }
-func (m *MsgFaucetKey) String() string { return proto.CompactTextString(m) }
-func (*MsgFaucetKey) ProtoMessage()    {}
-func (*MsgFaucetKey) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c2871739d4618116, []int{2}
-}
-func (m *MsgFaucetKey) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *MsgFaucetKey) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_MsgFaucetKey.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *MsgFaucetKey) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgFaucetKey.Merge(m, src)
-}
-func (m *MsgFaucetKey) XXX_Size() int {
-	return m.Size()
-}
-func (m *MsgFaucetKey) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgFaucetKey.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_MsgFaucetKey proto.InternalMessageInfo
-
-func (m *MsgFaucetKey) GetSender() string {
-	if m != nil {
-		return m.Sender
-	}
-	return ""
-}
-
-func (m *MsgFaucetKey) GetArmor() string {
-	if m != nil {
-		return m.Armor
-	}
-	return ""
-}
-
-type MsgFaucetKeyResponse struct {
-}
-
-func (m *MsgFaucetKeyResponse) Reset()         { *m = MsgFaucetKeyResponse{} }
-func (m *MsgFaucetKeyResponse) String() string { return proto.CompactTextString(m) }
-func (*MsgFaucetKeyResponse) ProtoMessage()    {}
-func (*MsgFaucetKeyResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c2871739d4618116, []int{3}
-}
-func (m *MsgFaucetKeyResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *MsgFaucetKeyResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_MsgFaucetKeyResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *MsgFaucetKeyResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgFaucetKeyResponse.Merge(m, src)
-}
-func (m *MsgFaucetKeyResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *MsgFaucetKeyResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgFaucetKeyResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_MsgFaucetKeyResponse proto.InternalMessageInfo
-
-type MsgMining struct {
-	Minter   string `protobuf:"bytes,1,opt,name=minter,proto3" json:"minter,omitempty" yaml:"minter"`
-	Lasttime int64  `protobuf:"varint,2,opt,name=lasttime,proto3" json:"lasttime,omitempty" yaml:"lasttime"`
-	Tally    int64  `protobuf:"varint,3,opt,name=tally,proto3" json:"tally,omitempty" yaml:"tally"`
-}
-
-func (m *MsgMining) Reset()         { *m = MsgMining{} }
-func (m *MsgMining) String() string { return proto.CompactTextString(m) }
-func (*MsgMining) ProtoMessage()    {}
-func (*MsgMining) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c2871739d4618116, []int{4}
-}
-func (m *MsgMining) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *MsgMining) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_MsgMining.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *MsgMining) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgMining.Merge(m, src)
-}
-func (m *MsgMining) XXX_Size() int {
-	return m.Size()
-}
-func (m *MsgMining) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgMining.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_MsgMining proto.InternalMessageInfo
-
-func (m *MsgMining) GetMinter() string {
-	if m != nil {
-		return m.Minter
-	}
-	return ""
-}
-
-func (m *MsgMining) GetLasttime() int64 {
-	if m != nil {
-		return m.Lasttime
-	}
-	return 0
-}
-
-func (m *MsgMining) GetTally() int64 {
-	if m != nil {
-		return m.Tally
-	}
-	return 0
-}
-
-type MsgMiningResponse struct {
-}
-
-func (m *MsgMiningResponse) Reset()         { *m = MsgMiningResponse{} }
-func (m *MsgMiningResponse) String() string { return proto.CompactTextString(m) }
-func (*MsgMiningResponse) ProtoMessage()    {}
-func (*MsgMiningResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c2871739d4618116, []int{5}
-}
-func (m *MsgMiningResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *MsgMiningResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_MsgMiningResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *MsgMiningResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MsgMiningResponse.Merge(m, src)
-}
-func (m *MsgMiningResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *MsgMiningResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_MsgMiningResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_MsgMiningResponse proto.InternalMessageInfo
-
 func init() {
 	proto.RegisterType((*MsgMint)(nil), "faucet.v1.MsgMint")
 	proto.RegisterType((*MsgMintResponse)(nil), "faucet.v1.MsgMintResponse")
-	proto.RegisterType((*MsgFaucetKey)(nil), "faucet.v1.MsgFaucetKey")
-	proto.RegisterType((*MsgFaucetKeyResponse)(nil), "faucet.v1.MsgFaucetKeyResponse")
-	proto.RegisterType((*MsgMining)(nil), "faucet.v1.MsgMining")
-	proto.RegisterType((*MsgMiningResponse)(nil), "faucet.v1.MsgMiningResponse")
 }
 
 func init() { proto.RegisterFile("v1/tx.proto", fileDescriptor_c2871739d4618116) }
 
 var fileDescriptor_c2871739d4618116 = []byte{
-	// 445 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x92, 0x3f, 0x8f, 0xd3, 0x30,
-	0x18, 0xc6, 0x6b, 0xca, 0x15, 0x6a, 0x0e, 0x1d, 0xcd, 0x55, 0xd0, 0x8b, 0x50, 0x82, 0x3c, 0x9c,
-	0x60, 0x89, 0x75, 0x20, 0x31, 0x20, 0xc4, 0x50, 0x09, 0x16, 0x94, 0x25, 0x13, 0x62, 0x41, 0x4e,
-	0xea, 0xfa, 0x2c, 0xf9, 0x4f, 0x15, 0x3b, 0x27, 0xf2, 0x09, 0x18, 0xe1, 0x33, 0x31, 0x31, 0xde,
-	0xc8, 0x54, 0xa1, 0xf6, 0x1b, 0xf4, 0x13, 0xa0, 0xda, 0x49, 0x08, 0x1c, 0x08, 0xdd, 0x66, 0x3f,
-	0xcf, 0xcf, 0x7e, 0x9f, 0xf7, 0xb5, 0xe1, 0x9d, 0x8b, 0x33, 0x6c, 0x3f, 0x26, 0xab, 0x52, 0x5b,
-	0x1d, 0x8c, 0x97, 0xa4, 0x2a, 0xa8, 0x4d, 0x2e, 0xce, 0xc2, 0x93, 0x42, 0x1b, 0xa9, 0xcd, 0x07,
-	0x67, 0x60, 0xbf, 0xf1, 0x54, 0x38, 0x65, 0x9a, 0x69, 0xaf, 0xef, 0x57, 0x8d, 0x7a, 0xc2, 0xb4,
-	0x66, 0x82, 0x62, 0xb7, 0xcb, 0xab, 0x25, 0x26, 0xaa, 0xf6, 0x16, 0xfa, 0x04, 0xe0, 0xad, 0xd4,
-	0xb0, 0x94, 0x2b, 0x1b, 0x3c, 0x81, 0x23, 0x43, 0xd5, 0x82, 0x96, 0x33, 0xf0, 0x08, 0x3c, 0x1e,
-	0xcf, 0x27, 0xbb, 0x75, 0x7c, 0xb7, 0x26, 0x52, 0xbc, 0x40, 0x5e, 0x47, 0x59, 0x03, 0xec, 0x51,
-	0xc9, 0x95, 0xa5, 0xe5, 0xec, 0xc6, 0x9f, 0xa8, 0xd7, 0x51, 0xd6, 0x00, 0xc1, 0x29, 0x3c, 0x58,
-	0x50, 0xa5, 0xe5, 0x6c, 0xe8, 0xc8, 0x7b, 0xbb, 0x75, 0x7c, 0xe8, 0x49, 0x27, 0xa3, 0xcc, 0xdb,
-	0x68, 0x02, 0x8f, 0x9a, 0x20, 0x19, 0x35, 0x2b, 0xad, 0x0c, 0x45, 0x04, 0x1e, 0xa6, 0x86, 0xbd,
-	0x71, 0x8d, 0xbf, 0xa5, 0xf5, 0x75, 0x02, 0x9e, 0xc2, 0x03, 0x52, 0x4a, 0xdd, 0xe6, 0xeb, 0x55,
-	0x75, 0x32, 0xca, 0xbc, 0x8d, 0xee, 0xc3, 0x69, 0xbf, 0x44, 0x57, 0xfa, 0x33, 0x80, 0x63, 0x1f,
-	0x87, 0x2b, 0xd6, 0x6b, 0x17, 0xfc, 0xaf, 0x5d, 0x0c, 0x6f, 0x0b, 0x62, 0xac, 0xe5, 0x92, 0xba,
-	0xda, 0xc3, 0xf9, 0xf1, 0x6e, 0x1d, 0x1f, 0x79, 0xb8, 0x75, 0x50, 0xd6, 0x41, 0xfb, 0xa4, 0x96,
-	0x08, 0x51, 0xbb, 0xf9, 0x0c, 0xfb, 0x49, 0x9d, 0x8c, 0x32, 0x6f, 0xa3, 0x63, 0x38, 0xe9, 0x02,
-	0xb5, 0x31, 0x9f, 0x7e, 0x05, 0x70, 0x98, 0x1a, 0x16, 0x3c, 0x87, 0x37, 0xdd, 0x13, 0x06, 0x49,
-	0xf7, 0x4d, 0x92, 0x66, 0x9a, 0x61, 0x78, 0x55, 0x6b, 0xcf, 0x07, 0xaf, 0xe1, 0xf8, 0xd7, 0x78,
-	0x1f, 0xfc, 0x0e, 0x76, 0x46, 0x18, 0xff, 0xc3, 0xe8, 0xae, 0x79, 0x09, 0x47, 0xcd, 0xa4, 0xa6,
-	0x57, 0x8a, 0x71, 0xc5, 0xc2, 0x87, 0x7f, 0x53, 0xdb, 0xd3, 0xf3, 0x77, 0xdf, 0x36, 0x11, 0xb8,
-	0xdc, 0x44, 0xe0, 0xc7, 0x26, 0x02, 0x5f, 0xb6, 0xd1, 0xe0, 0x72, 0x1b, 0x0d, 0xbe, 0x6f, 0xa3,
-	0xc1, 0xfb, 0x57, 0x8c, 0xdb, 0xf3, 0x2a, 0x4f, 0x0a, 0x2d, 0x71, 0x71, 0x4e, 0x4a, 0x41, 0xa9,
-	0x5a, 0x52, 0x8e, 0xa5, 0x5e, 0x54, 0x82, 0x1a, 0xcc, 0x55, 0x51, 0xe5, 0xc4, 0xea, 0x12, 0xfb,
-	0xfb, 0xb1, 0x7b, 0x03, 0x45, 0x04, 0xb6, 0xf5, 0x8a, 0x9a, 0x7c, 0xe4, 0x3e, 0xf9, 0xb3, 0x9f,
-	0x01, 0x00, 0x00, 0xff, 0xff, 0xb8, 0xa3, 0x37, 0xe1, 0x4a, 0x03, 0x00, 0x00,
+	// 307 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x90, 0x31, 0x4e, 0xc3, 0x30,
+	0x14, 0x86, 0x1b, 0x0a, 0x45, 0x35, 0x20, 0x68, 0xc4, 0xd0, 0x66, 0x70, 0x91, 0x07, 0x04, 0x4b,
+	0xac, 0x82, 0xc4, 0x80, 0x04, 0x43, 0xf7, 0x2e, 0x99, 0x10, 0x0b, 0x72, 0xd2, 0x57, 0x37, 0x52,
+	0xec, 0x57, 0xc5, 0x4e, 0x45, 0x4f, 0xc0, 0xca, 0xb1, 0x18, 0x3b, 0x32, 0x55, 0xa8, 0xbd, 0x41,
+	0x4f, 0x80, 0x6a, 0x07, 0x06, 0xd8, 0xfc, 0xbe, 0xff, 0xb3, 0xf5, 0xfc, 0x93, 0xa3, 0xf9, 0x80,
+	0xdb, 0xd7, 0x78, 0x56, 0xa2, 0xc5, 0xb0, 0x3d, 0x11, 0x55, 0x06, 0x36, 0x9e, 0x0f, 0xa2, 0x5e,
+	0x86, 0x46, 0xa1, 0x79, 0x71, 0x01, 0xf7, 0x83, 0xb7, 0xa2, 0x73, 0x89, 0x12, 0x3d, 0xdf, 0x9d,
+	0x6a, 0xda, 0x93, 0x88, 0xb2, 0x00, 0xee, 0xa6, 0xb4, 0x9a, 0x70, 0xa1, 0x17, 0x3e, 0x62, 0x6f,
+	0x01, 0x39, 0x1c, 0x19, 0x39, 0xca, 0xb5, 0x0d, 0xaf, 0x49, 0xcb, 0x80, 0x1e, 0x43, 0xd9, 0x0d,
+	0x2e, 0x82, 0xab, 0xf6, 0xb0, 0xb3, 0x5d, 0xf5, 0x4f, 0x16, 0x42, 0x15, 0xf7, 0xcc, 0x73, 0x96,
+	0xd4, 0xc2, 0x4e, 0x55, 0xb9, 0xb6, 0x50, 0x76, 0xf7, 0xfe, 0xaa, 0x9e, 0xb3, 0xa4, 0x16, 0xc2,
+	0x4b, 0x72, 0x30, 0x06, 0x8d, 0xaa, 0xdb, 0x74, 0xe6, 0xd9, 0x76, 0xd5, 0x3f, 0xf6, 0xa6, 0xc3,
+	0x2c, 0xf1, 0x31, 0xeb, 0x90, 0xd3, 0x7a, 0x91, 0x04, 0xcc, 0x0c, 0xb5, 0x81, 0x9b, 0x07, 0xd2,
+	0x1c, 0x19, 0x19, 0xde, 0x91, 0x7d, 0xb7, 0x5f, 0x18, 0xff, 0x76, 0x10, 0xd7, 0x6a, 0x14, 0xfd,
+	0x67, 0x3f, 0xd7, 0x87, 0x4f, 0x1f, 0x6b, 0x1a, 0x2c, 0xd7, 0x34, 0xf8, 0x5a, 0xd3, 0xe0, 0x7d,
+	0x43, 0x1b, 0xcb, 0x0d, 0x6d, 0x7c, 0x6e, 0x68, 0xe3, 0xf9, 0x51, 0xe6, 0x76, 0x5a, 0xa5, 0x71,
+	0x86, 0x8a, 0x67, 0x53, 0x51, 0x16, 0x00, 0x7a, 0x02, 0x39, 0x57, 0x38, 0xae, 0x0a, 0x30, 0x3c,
+	0xd7, 0x59, 0x95, 0x0a, 0x8b, 0x25, 0xf7, 0xaf, 0x73, 0xf7, 0x15, 0x2d, 0x0a, 0x6e, 0x17, 0x33,
+	0x30, 0x69, 0xcb, 0x95, 0x77, 0xfb, 0x1d, 0x00, 0x00, 0xff, 0xff, 0xcd, 0xe6, 0x2e, 0xee, 0xa2,
+	0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -366,8 +170,6 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MsgClient interface {
 	Mint(ctx context.Context, in *MsgMint, opts ...grpc.CallOption) (*MsgMintResponse, error)
-	FaucetKey(ctx context.Context, in *MsgFaucetKey, opts ...grpc.CallOption) (*MsgFaucetKeyResponse, error)
-	Mining(ctx context.Context, in *MsgMining, opts ...grpc.CallOption) (*MsgMiningResponse, error)
 }
 
 type msgClient struct {
@@ -387,29 +189,9 @@ func (c *msgClient) Mint(ctx context.Context, in *MsgMint, opts ...grpc.CallOpti
 	return out, nil
 }
 
-func (c *msgClient) FaucetKey(ctx context.Context, in *MsgFaucetKey, opts ...grpc.CallOption) (*MsgFaucetKeyResponse, error) {
-	out := new(MsgFaucetKeyResponse)
-	err := c.cc.Invoke(ctx, "/faucet.v1.Msg/FaucetKey", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *msgClient) Mining(ctx context.Context, in *MsgMining, opts ...grpc.CallOption) (*MsgMiningResponse, error) {
-	out := new(MsgMiningResponse)
-	err := c.cc.Invoke(ctx, "/faucet.v1.Msg/Mining", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	Mint(context.Context, *MsgMint) (*MsgMintResponse, error)
-	FaucetKey(context.Context, *MsgFaucetKey) (*MsgFaucetKeyResponse, error)
-	Mining(context.Context, *MsgMining) (*MsgMiningResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -418,12 +200,6 @@ type UnimplementedMsgServer struct {
 
 func (*UnimplementedMsgServer) Mint(ctx context.Context, req *MsgMint) (*MsgMintResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Mint not implemented")
-}
-func (*UnimplementedMsgServer) FaucetKey(ctx context.Context, req *MsgFaucetKey) (*MsgFaucetKeyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FaucetKey not implemented")
-}
-func (*UnimplementedMsgServer) Mining(ctx context.Context, req *MsgMining) (*MsgMiningResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Mining not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -448,42 +224,6 @@ func _Msg_Mint_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_FaucetKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgFaucetKey)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).FaucetKey(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/faucet.v1.Msg/FaucetKey",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).FaucetKey(ctx, req.(*MsgFaucetKey))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Msg_Mining_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgMining)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).Mining(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/faucet.v1.Msg/Mining",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).Mining(ctx, req.(*MsgMining))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "faucet.v1.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -491,14 +231,6 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Mint",
 			Handler:    _Msg_Mint_Handler,
-		},
-		{
-			MethodName: "FaucetKey",
-			Handler:    _Msg_FaucetKey_Handler,
-		},
-		{
-			MethodName: "Mining",
-			Handler:    _Msg_Mining_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -572,129 +304,6 @@ func (m *MsgMintResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *MsgFaucetKey) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *MsgFaucetKey) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *MsgFaucetKey) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Armor) > 0 {
-		i -= len(m.Armor)
-		copy(dAtA[i:], m.Armor)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Armor)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Sender) > 0 {
-		i -= len(m.Sender)
-		copy(dAtA[i:], m.Sender)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Sender)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *MsgFaucetKeyResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *MsgFaucetKeyResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *MsgFaucetKeyResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	return len(dAtA) - i, nil
-}
-
-func (m *MsgMining) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *MsgMining) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *MsgMining) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Tally != 0 {
-		i = encodeVarintTx(dAtA, i, uint64(m.Tally))
-		i--
-		dAtA[i] = 0x18
-	}
-	if m.Lasttime != 0 {
-		i = encodeVarintTx(dAtA, i, uint64(m.Lasttime))
-		i--
-		dAtA[i] = 0x10
-	}
-	if len(m.Minter) > 0 {
-		i -= len(m.Minter)
-		copy(dAtA[i:], m.Minter)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Minter)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *MsgMiningResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *MsgMiningResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *MsgMiningResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	return len(dAtA) - i, nil
-}
-
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -728,60 +337,6 @@ func (m *MsgMint) Size() (n int) {
 }
 
 func (m *MsgMintResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	return n
-}
-
-func (m *MsgFaucetKey) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Sender)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	l = len(m.Armor)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	return n
-}
-
-func (m *MsgFaucetKeyResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	return n
-}
-
-func (m *MsgMining) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Minter)
-	if l > 0 {
-		n += 1 + l + sovTx(uint64(l))
-	}
-	if m.Lasttime != 0 {
-		n += 1 + sovTx(uint64(m.Lasttime))
-	}
-	if m.Tally != 0 {
-		n += 1 + sovTx(uint64(m.Tally))
-	}
-	return n
-}
-
-func (m *MsgMiningResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -969,340 +524,6 @@ func (m *MsgMintResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgMintResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipTx(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthTx
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *MsgFaucetKey) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowTx
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: MsgFaucetKey: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgFaucetKey: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Sender", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Sender = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Armor", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Armor = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipTx(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthTx
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *MsgFaucetKeyResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowTx
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: MsgFaucetKeyResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgFaucetKeyResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipTx(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthTx
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *MsgMining) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowTx
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: MsgMining: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgMining: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Minter", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthTx
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthTx
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Minter = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Lasttime", wireType)
-			}
-			m.Lasttime = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Lasttime |= int64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Tally", wireType)
-			}
-			m.Tally = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Tally |= int64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		default:
-			iNdEx = preIndex
-			skippy, err := skipTx(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthTx
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *MsgMiningResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowTx
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: MsgMiningResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: MsgMiningResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

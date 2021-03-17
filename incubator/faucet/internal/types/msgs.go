@@ -8,15 +8,17 @@ import (
 
 var (
 	_ sdk.Msg = &MsgMint{}
-	_ sdk.Msg = &MsgFaucetKey{}
 	_ sdk.Msg = &MsgMining{}
 )
 
 const (
-	TypeMint      = "mint"
-	TypeFaucetKey = "faucet_key"
-	TypeMining    = "mining"
+	TypeMint   = "mint"
+	TypeMining = "mining"
 )
+
+///////////////////////
+// MsgMint //
+///////////////////////
 
 // NewMsgMint is a constructor function for NewMsgMint
 func NewMsgMint(sender sdk.AccAddress, minter sdk.AccAddress, denom string) *MsgMint {
@@ -57,42 +59,11 @@ func (msg *MsgMint) GetSigners() []sdk.AccAddress {
 	return []sdk.AccAddress{sdk.AccAddress(msg.Sender)}
 }
 
-// FAUCET KEY
-// NewMsgFaucetKey is a constructor function for MsgFaucetKey
-func NewMsgFaucetKey(sender sdk.AccAddress, armor string) MsgFaucetKey {
-	return MsgFaucetKey{Sender: sender.String(), Armor: armor}
-}
+///////////////////////
+// MsgMining //
+///////////////////////
 
-// Route should return the name of the module
-func (msg *MsgFaucetKey) Route() string { return RouterKey }
-
-// Type should return the action
-func (msg *MsgFaucetKey) Type() string { return TypeFaucetKey }
-
-// ValidateBasic runs stateless checks on the message
-func (msg *MsgFaucetKey) ValidateBasic() error {
-	if len(msg.Armor) == 0 {
-		return ErrFaucetKeyEmpty
-	}
-	return nil
-}
-
-// GetSignBytes encodes the message for signing
-func (msg *MsgFaucetKey) GetSignBytes() []byte {
-	panic("amino support disabled")
-}
-
-// GetSigners defines whose signature is required
-func (msg *MsgFaucetKey) GetSigners() []sdk.AccAddress {
-	addr, err := sdk.AccAddressFromBech32(msg.Sender)
-	if err != nil {
-		panic(err)
-	}
-	return []sdk.AccAddress{addr}
-}
-
-// MINING
-// NewMining returns a new Mining
+// NewMining returns a new Mining Message
 func NewMining(minter string, tally int64) *MsgMining {
 	return &MsgMining{
 		Minter:   minter,

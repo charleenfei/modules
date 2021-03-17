@@ -12,7 +12,7 @@ import (
 
 var _ types.QueryServer = Keeper{}
 
-func (k Keeper) QueryMining(c context.Context, req *types.QueryMiningRequest) (*types.QueryMiningResponse, error) {
+func (k Keeper) QueryWhenBrr(c context.Context, req *types.QueryWhenBrrRequest) (*types.QueryWhenBrrResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "empty request")
 	}
@@ -30,7 +30,7 @@ func (k Keeper) QueryMining(c context.Context, req *types.QueryMiningRequest) (*
 	if !isPresent {
 		timeLeft = 0
 	} else {
-		lastTime := time.Unix(m.LastTime, 0)
+		lastTime := time.Unix(m.Lasttime, 0)
 		currentTime := time.Unix(mintTime, 0)
 
 		lastTimePlusLimit := lastTime.Add(k.Limit).UTC()
@@ -42,18 +42,7 @@ func (k Keeper) QueryMining(c context.Context, req *types.QueryMiningRequest) (*
 		}
 	}
 
-	return &types.QueryMiningResponse{
+	return &types.QueryWhenBrrResponse{
 		TimeLeft: timeLeft,
 	}, nil
 }
-
-func (k Keeper) QueryFaucet(c context.Context, req *types.QueryFaucetRequest) (*types.QueryFaucetResponse, error) {
-	ctx := sdk.UnwrapSDKContext(c)
-	value := k.GetFaucetKey(ctx)
-	return &types.QueryFaucetResponse{
-		Key: value,
-	}, nil
-}
-
-// query mining
-// query faucet

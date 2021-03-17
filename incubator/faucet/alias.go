@@ -15,9 +15,8 @@ const (
 )
 
 var (
-	NewKeeper     = keeper.NewKeeper
-	ModuleCdc     = types.ModuleCdc
-	RegisterCodec = types.RegisterCodec
+	NewKeeper = keeper.NewKeeper
+	ModuleCdc = types.ModuleCdc
 )
 
 type (
