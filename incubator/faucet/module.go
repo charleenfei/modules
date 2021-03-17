@@ -1,17 +1,19 @@
 package faucet
 
 import (
+	"context"
 	"encoding/json"
 
-	"github.com/gorilla/mux"
+	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/spf13/cobra"
 
-	"github.com/cosmos/cosmos-sdk/client/context"
+	"github.com/charleenfei/modules/incubator/faucet/client/cli"
+	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/okwme/modules/incubator/faucet/client/cli"
-	"github.com/okwme/modules/incubator/faucet/client/rest"
+	"github.com/cosmos/cosmos-sdk/x/gov/types"
 
+	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	abci "github.com/tendermint/tendermint/abci/types"
 )
@@ -29,39 +31,47 @@ func (AppModuleBasic) Name() string {
 	return ModuleName
 }
 
-func (AppModuleBasic) RegisterCodec(cdc *codec.Codec) {
-	RegisterCodec(cdc)
+// RegisterLegacyAminoCodec doesn't support amino
+func (AppModuleBasic) RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {}
+
+// DefaultGenesis returns default genesis state as raw bytes for the faucet
+// module.
+func (AppModuleBasic) DefaultGenesis(cdc codec.JSONMarshaler) json.RawMessage {
+	gs := types.DefaultGenesisState()
+	return cdc.MustMarshalJSON(&gs)
 }
 
-func (AppModuleBasic) DefaultGenesis() json.RawMessage {
-	return nil
-}
-
-// Validation check of the Genesis
-func (AppModuleBasic) ValidateGenesis(bz json.RawMessage) error {
-	return nil
-}
-
-// Register rest routes
-func (AppModuleBasic) RegisterRESTRoutes(ctx context.CLIContext, rtr *mux.Router) {
-	if profile == TESTNET {
-		rest.RegisterRoutes(ctx, rtr, StoreKey)
+// ValidateGenesis performs genesis state validation for the faucet module.
+func (AppModuleBasic) ValidateGenesis(cdc codec.JSONMarshaler, _ client.TxEncodingConfig, bz json.RawMessage) error {
+	var gs types.GenesisState
+	if err := cdc.UnmarshalJSON(bz, &gs); err != nil {
+		return err
 	}
+	return gs.Validate()
 }
 
 // Get the root query command of this module
-func (AppModuleBasic) GetQueryCmd(cdc *codec.Codec) *cobra.Command {
-	return cli.GetQueryCmd(StoreKey, cdc)
+func (AppModuleBasic) GetQueryCmd() *cobra.Command {
+	return cli.GetQueryCmd()
 }
 
 // Get the root tx command of this module
-func (AppModuleBasic) GetTxCmd(cdc *codec.Codec) *cobra.Command {
-	if profile == TESTNET {
-		return cli.GetTxCmd(StoreKey, cdc)
-	} else {
-		return nil
-	}
+func (AppModuleBasic) GetTxCmd() *cobra.Command {
+	return cli.GetTxCmd()
 }
+
+// RegisterGRPCGatewayRoutes registers the gRPC Gateway routes for the distribution module.
+// also implements app modeul basic
+func (AppModuleBasic) RegisterGRPCGatewayRoutes(clientCtx client.Context, mux *runtime.ServeMux) {
+	types.RegisterQueryHandlerClient(context.Background(), mux, types.NewQueryClient(clientCtx))
+}
+
+// RegisterInterfaces implements app module basic
+func (b AppModuleBasic) RegisterInterfaces(registry codectypes.InterfaceRegistry) {
+	types.RegisterInterfaces(registry)
+}
+
+//___________________________
 
 type AppModule struct {
 	AppModuleBasic
@@ -86,19 +96,11 @@ func (am AppModule) Route() string {
 	return RouterKey
 }
 
-func (am AppModule) NewHandler() sdk.Handler {
-	if profile == TESTNET {
-		return NewHandler(am.keeper)
-	} else {
-		return nil
-	}
-}
-func (am AppModule) QuerierRoute() string {
-	return ModuleName
-}
+func (AppModule) QuerierRoute() string { return types.QuerierRoute }
 
-func (am AppModule) NewQuerierHandler() sdk.Querier {
-	return NewQuerier(am.keeper) // unimplement
+// LegacyQuerierHandler returns a nil Querier.
+func (am AppModule) LegacyQuerierHandler(_ *codec.LegacyAmino) sdk.Querier {
+	return nil
 }
 
 func (am AppModule) BeginBlock(_ sdk.Context, _ abci.RequestBeginBlock) {}

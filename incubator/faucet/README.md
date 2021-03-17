@@ -12,7 +12,7 @@ For security consideration, you can add this module to your project as you want,
 Step 1: Import to your app.go
 ```go
 import (
-	"github.com/okwme/modules/incubator/faucet"
+	"github.com/charleenfei/modules/incubator/faucet"
 )
 ```
 

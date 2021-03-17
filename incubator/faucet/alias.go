@@ -1,8 +1,8 @@
 package faucet
 
 import (
-	"github.com/okwme/modules/incubator/faucet/internal/keeper"
-	"github.com/okwme/modules/incubator/faucet/internal/types"
+	"github.com/charleenfei/modules/incubator/faucet/internal/keeper"
+	"github.com/charleenfei/modules/incubator/faucet/internal/types"
 )
 
 const (
@@ -16,7 +16,6 @@ const (
 
 var (
 	NewKeeper     = keeper.NewKeeper
-	NewQuerier    = keeper.NewQuerier
 	ModuleCdc     = types.ModuleCdc
 	RegisterCodec = types.RegisterCodec
 )

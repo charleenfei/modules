@@ -1,0 +1,13 @@
+syntax = "proto3";
+package faucet.v1;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/charleenfei/modules/incubator/faucet/internal/types";
+
+
+// GenesisState - all oracle state that must be provided at genesis
+message GenesisState {
+
+}
+

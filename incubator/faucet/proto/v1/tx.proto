@@ -1,0 +1,37 @@
+syntax = "proto3";
+package faucet.v1;
+
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "google/protobuf/any.proto";
+
+option go_package = "github.com/charleenfei/modules/incubator/faucet/internal/types";
+
+service Msg {
+ rpc Mint(MsgMint) returns (MsgMintResponse);
+ rpc FaucetKey(MsgFaucetKey) returns (MsgFaucetKeyResponse);
+ rpc Mining(MsgMining) returns (MsgMiningResponse);
+}
+
+message MsgMint {
+  string sender = 1 [(gogoproto.moretags) = "yaml:\"sender\""];
+  string minter = 2 [(gogoproto.moretags) = "yaml:\"minter\""];
+  string denom = 3 [(gogoproto.moretags) = "yaml:\"denom\""];
+}
+
+message MsgMintResponse {}
+
+message MsgFaucetKey {
+  string sender = 1 [(gogoproto.moretags) = "yaml:\"sender\""];
+  string armor = 2 [(gogoproto.moretags) = "yaml:\"armor\""];
+}
+
+message MsgFaucetKeyResponse {}
+
+message MsgMining {
+  string minter = 1 [(gogoproto.moretags) = "yaml:\"minter\""];
+  int64 lasttime = 2 [(gogoproto.moretags) = "yaml:\"lasttime\""];
+  int64 tally = 3 [(gogoproto.moretags) = "yaml:\"tally\""];
+}
+
+message MsgMiningResponse {}

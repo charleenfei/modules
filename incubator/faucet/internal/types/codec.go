@@ -2,17 +2,28 @@ package types
 
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
+	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/cosmos-sdk/types/msgservice"
+	// this line is used by starport scaffolding # 1
 )
 
-// ModuleCdc is the codec for the module
-var ModuleCdc = codec.New()
-
-func init() {
-	RegisterCodec(ModuleCdc)
+func RegisterCodec(cdc *codec.LegacyAmino) {
+	// this line is used by starport scaffolding # 2
 }
 
-// RegisterCodec registers concrete types on the Amino codec
-func RegisterCodec(cdc *codec.Codec) {
-	cdc.RegisterConcrete(MsgMint{}, "faucet/Mint", nil)
-	cdc.RegisterConcrete(MsgFaucetKey{}, "faucet/FaucetKey", nil)
+func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
+	// this line is used by starport scaffolding # 3
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgMint{},
+		&MsgFaucetKey{},
+		&MsgMining{},
+	)
+
+	msgservice.RegisterMsgServiceDesc(registry, &_Msg_serviceDesc)
 }
+
+var (
+	amino     = codec.NewLegacyAmino()
+	ModuleCdc = codec.NewAminoCodec(amino)
+)

@@ -1,5 +1,6 @@
 PACKAGES=$(shell go list ./... | grep -v '/simulation')
-
+DOCKER := $(shell which docker)
+DOCKER_BUF := $(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace bufbuild/buf
 VERSION := $(shell echo $(shell git describe --tags) | sed 's/^v//')
 COMMIT := $(shell git log -1 --format='%H')
 
@@ -11,7 +12,6 @@ ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=NameService \
 
 BUILD_FLAGS := -ldflags '$(ldflags)'
 
-include Makefile.ledger
 all: install
 
 install: go.sum
@@ -28,3 +28,7 @@ go.sum: go.mod
 
 test:
 	@go test -mod=readonly $(PACKAGES)
+
+proto-gen:
+	@echo "Generating Protobuf files"
+	$(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace tendermintdev/sdk-proto-gen:v0.1 sh ./scripts/protocgen.sh

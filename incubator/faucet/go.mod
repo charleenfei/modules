@@ -1,17 +1,23 @@
-module github.com/okwme/modules/incubator/faucet
+module github.com/charleenfei/modules/incubator/faucet
 
-go 1.13
+go 1.15
 
 require (
-	github.com/cosmos/cosmos-sdk v0.38.4
-	github.com/gorilla/mux v1.7.4
-	github.com/spf13/cobra v0.0.6
-	github.com/spf13/viper v1.6.2
-	github.com/stretchr/testify v1.5.1
-	github.com/tendermint/tendermint v0.33.3
+	github.com/cosmos/cosmos-sdk v0.42.1
+	github.com/gogo/protobuf v1.3.3
+	github.com/golang/protobuf v1.4.3
+	github.com/gorilla/mux v1.8.0
+	github.com/grpc-ecosystem/grpc-gateway v1.16.0 // indirect
+	github.com/regen-network/cosmos-proto v0.3.1 // indirect
+	github.com/spf13/cobra v1.1.1
+	github.com/spf13/viper v1.7.1
+	github.com/stretchr/testify v1.7.0
+	github.com/tendermint/tendermint v0.34.8
 	github.com/tmdvs/Go-Emoji-Utils v1.1.0
+	google.golang.org/genproto v0.0.0-20210223151946-22b48be4551b
+	google.golang.org/grpc v1.36.0
 )
 
-replace github.com/cosmos/cosmos-sdk v0.38.4 => github.com/okwme/cosmos-sdk v0.38.5-0.20200715162801-4fd244eef297
+replace github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
 
-// replace github.com/cosmos/cosmos-sdk v0.38.4 => /Users/billy/GitHub.com/okwme/cosmos-sdk
+replace google.golang.org/grpc => google.golang.org/grpc v1.33.2
