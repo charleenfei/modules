@@ -9,7 +9,7 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	auth "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	"github.com/tendermint/tendermint/libs/log"
-	"github.com/charleenfei/modules/incubator/faucet/types"
+	"github.com/charleenfei/modules/incubator/faucet/internal/types"
 )
 
 const FaucetStoreKey = "DefaultFaucetStoreKey"
