@@ -1,8 +1,8 @@
 package faucet
 
 import (
-	"github.com/charleenfei/modules/incubator/faucet/internal/keeper"
-	"github.com/charleenfei/modules/incubator/faucet/internal/types"
+	"github.com/charleenfei/modules/incubator/faucet/keeper"
+	"github.com/charleenfei/modules/incubator/faucet/types"
 )
 
 const (

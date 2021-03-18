@@ -8,10 +8,11 @@ import (
 	"github.com/stretchr/testify/require"
 	emoji "github.com/tmdvs/Go-Emoji-Utils"
 
-	"github.com/charleenfei/modules/incubator/faucet/internal/types"
+	"github.com/charleenfei/modules/incubator/faucet/types"
 	"github.com/tendermint/tendermint/crypto"
 )
 
+// TODO: rewrite test
 func TestEmoji(t *testing.T) {
 	moduleAcct := sdk.AccAddress(crypto.AddressHash([]byte("foo")))
 	moduleAcct2 := sdk.AccAddress(crypto.AddressHash([]byte("bar")))

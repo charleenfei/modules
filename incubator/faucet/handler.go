@@ -3,7 +3,7 @@ package faucet
 import (
 	"fmt"
 
-	"github.com/charleenfei/modules/incubator/faucet/internal/types"
+	"github.com/charleenfei/modules/incubator/faucet/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"

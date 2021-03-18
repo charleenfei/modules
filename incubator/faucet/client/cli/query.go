@@ -3,7 +3,7 @@ package cli
 import (
 	"fmt"
 
-	"github.com/charleenfei/modules/incubator/faucet/internal/types"
+	"github.com/charleenfei/modules/incubator/faucet/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/spf13/cobra"
 )

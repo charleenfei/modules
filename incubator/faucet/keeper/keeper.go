@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/charleenfei/modules/incubator/faucet/internal/types"
+	"github.com/charleenfei/modules/incubator/faucet/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
