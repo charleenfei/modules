@@ -53,6 +53,7 @@ func (k Keeper) Logger(ctx sdk.Context) log.Logger {
 
 // MintAndSend mint coins and send to receiver.
 func (k Keeper) MintAndSend(ctx sdk.Context, msg *types.MsgMint) error {
+	// TODO: should most of this logic be in the msg_server?
 	results := emoji.FindAll(msg.Denom)
 	if len(results) != 1 {
 		return types.ErrNoEmoji

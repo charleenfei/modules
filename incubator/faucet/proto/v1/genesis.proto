@@ -7,7 +7,5 @@ option go_package = "github.com/charleenfei/modules/incubator/faucet/internal/ty
 
 
 // GenesisState - all oracle state that must be provided at genesis
-message GenesisState {
-
-}
+message GenesisState {}
 
