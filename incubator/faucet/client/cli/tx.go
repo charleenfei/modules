@@ -21,16 +21,16 @@ func GetTxCmd() *cobra.Command {
 	}
 
 	faucetTxCmd.AddCommand(
-		GetCmdMint(),
-		GetCmdMintFor(),
+		txMint(),
+		txMintFor(),
 	)
 
 	return faucetTxCmd
 }
 
 // GetCmdMint is the CLI command for mining coin
-func GetCmdMint() *cobra.Command {
-	return &cobra.Command{
+func txMint() *cobra.Command {
+	cmd := &cobra.Command{
 		Use:   "mint",
 		Short: "mint coin to sender address",
 		Args:  cobra.MaximumNArgs(1),
@@ -50,10 +50,12 @@ func GetCmdMint() *cobra.Command {
 			return tx.GenerateOrBroadcastTxCLI(ctx, cmd.Flags(), msg)
 		},
 	}
+	flags.AddTxFlagsToCmd(cmd)
+	return cmd
 }
 
 // GetCmdMintFor is the CLI command for mining coin
-func GetCmdMintFor() *cobra.Command {
+func txMintFor() *cobra.Command {
 	return &cobra.Command{
 		Use:   "mintfor [address] [denom]",
 		Short: "mint coin for new address",

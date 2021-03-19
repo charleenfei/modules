@@ -8,7 +8,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	auth "github.com/cosmos/cosmos-sdk/x/auth/keeper"
+	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
+	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
+	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	"github.com/tendermint/tendermint/libs/log"
 	emoji "github.com/tmdvs/Go-Emoji-Utils"
 )
@@ -17,9 +19,9 @@ const FaucetStoreKey = "DefaultFaucetStoreKey"
 
 // Keeper maintains the link to storage and exposes getter/setter methods for the various parts of the state machine
 type Keeper struct {
-	SupplyKeeper  types.SupplyKeeper
-	StakingKeeper types.StakingKeeper
-	AccountKeeper auth.AccountKeeper
+	BankKeeper    bankkeeper.Keeper
+	StakingKeeper stakingkeeper.Keeper
+	AccountKeeper authkeeper.AccountKeeper
 	amount        int64                 // set default amount for each mint.
 	Limit         time.Duration         // rate limiting for mint, etc 24 * time.Hours
 	storeKey      sdk.StoreKey          // Unexposed key to access store from sdk.Context
@@ -28,15 +30,15 @@ type Keeper struct {
 
 // NewKeeper creates new instances of the Faucet Keeper
 func NewKeeper(
-	supplyKeeper types.SupplyKeeper,
-	stakingKeeper types.StakingKeeper,
-	accountKeeper auth.AccountKeeper,
+	bankKeeper bankkeeper.Keeper,
+	stakingKeeper stakingkeeper.Keeper,
+	accountKeeper authkeeper.AccountKeeper,
 	amount int64,
 	rateLimit time.Duration,
 	storeKey sdk.StoreKey,
 	cdc codec.BinaryMarshaler) Keeper {
 	return Keeper{
-		SupplyKeeper:  supplyKeeper,
+		BankKeeper:    bankKeeper,
 		StakingKeeper: stakingKeeper,
 		AccountKeeper: accountKeeper,
 		amount:        amount,
@@ -83,7 +85,7 @@ func (k Keeper) MintAndSend(ctx sdk.Context, msg *types.MsgMint) error {
 	k.setMining(ctx, msg.Sender, mining)
 	k.Logger(ctx).Info("Mint coin: %s", newCoin)
 	newCoins := sdk.NewCoins(newCoin)
-	if err := k.SupplyKeeper.MintCoins(ctx, types.ModuleName, newCoins); err != nil {
+	if err := k.BankKeeper.MintCoins(ctx, types.ModuleName, newCoins); err != nil {
 		return err
 	}
 
@@ -97,13 +99,14 @@ func (k Keeper) MintAndSend(ctx sdk.Context, msg *types.MsgMint) error {
 		return sdkerrors.Wrapf(sdkerrors.ErrUnauthorized, "%s does not exist and is not allowed to receive tokens", msg.Minter)
 	}
 
-	if err := k.SupplyKeeper.SendCoinsFromModuleToAccount(ctx, types.ModuleName, r, sdk.NewCoins(newCoin)); err != nil {
+	if err := k.BankKeeper.SendCoinsFromModuleToAccount(ctx, types.ModuleName, r, sdk.NewCoins(newCoin)); err != nil {
 		return err
 	}
 
 	return nil
 }
 
+// TODO: convert Mining message to just a type
 func (k Keeper) getMining(ctx sdk.Context, minter string) types.MsgMining {
 	store := ctx.KVStore(k.storeKey)
 	if !k.isPresent(ctx, minter) {
