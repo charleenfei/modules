@@ -9,13 +9,15 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
-var _ types.MsgServer = Keeper{}
+type MsgServer struct {
+	k Keeper
+}
 
-func (k Keeper) Mint(c context.Context, msg *types.MsgMint) (*types.MsgMintResponse, error) {
+func (m MsgServer) Mint(c context.Context, msg *types.MsgMint) (*types.MsgMintResponse, error) {
 	ctx := sdk.UnwrapSDKContext(c)
-	if err := k.MintAndSend(ctx, msg); err != nil {
+	if err := m.k.MintAndSend(ctx, msg); err != nil {
 		// TODO: does this error still make sense?
-		return nil, sdkerrors.Wrap(err, fmt.Sprintf(" in [%v] hours", k.Limit.Hours()))
+		return nil, sdkerrors.Wrap(err, fmt.Sprintf(" in [%v] hours", m.k.Limit.Hours()))
 	}
 	return &types.MsgMintResponse{}, nil
 }

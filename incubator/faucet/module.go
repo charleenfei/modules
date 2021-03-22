@@ -73,14 +73,16 @@ func (b AppModuleBasic) RegisterInterfaces(registry codectypes.InterfaceRegistry
 
 type AppModule struct {
 	AppModuleBasic
-	keeper keeper.Keeper
+	msgServer   keeper.MsgServer
+	queryServer keeper.QueryServer
 }
 
 // NewAppModule creates a new AppModule Object
-func NewAppModule(k keeper.Keeper) AppModule {
+func NewAppModule(m keeper.MsgServer, q keeper.QueryServer) AppModule {
 	return AppModule{
 		AppModuleBasic: AppModuleBasic{},
-		keeper:         k,
+		msgServer:      m,
+		queryServer:    q,
 	}
 }
 
@@ -91,7 +93,7 @@ func (AppModule) Name() string {
 func (am AppModule) RegisterInvariants(_ sdk.InvariantRegistry) {}
 
 func (am AppModule) Route() sdk.Route {
-	return sdk.NewRoute(types.RouterKey, NewHandler(am.keeper))
+	return sdk.NewRoute(types.RouterKey, NewHandler(am.msgServer))
 }
 
 func (AppModule) QuerierRoute() string { return types.QuerierRoute }
@@ -103,8 +105,8 @@ func (am AppModule) LegacyQuerierHandler(_ *codec.LegacyAmino) sdk.Querier {
 
 // RegisterServices registers module services.
 func (am AppModule) RegisterServices(cfg module.Configurator) {
-	types.RegisterMsgServer(cfg.MsgServer(), am.keeper)
-	types.RegisterQueryServer(cfg.QueryServer(), am.keeper)
+	types.RegisterMsgServer(cfg.MsgServer(), am.msgServer)
+	types.RegisterQueryServer(cfg.QueryServer(), am.queryServer)
 }
 
 func (am AppModule) BeginBlock(_ sdk.Context, _ abci.RequestBeginBlock) {}
