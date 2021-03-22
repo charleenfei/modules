@@ -11,7 +11,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// GetTxCmd return faucet sub-command for tx
+// GetTxCmd returns the root tx module
 func GetTxCmd() *cobra.Command {
 	faucetTxCmd := &cobra.Command{
 		Use:                        types.ModuleName,
@@ -29,7 +29,7 @@ func GetTxCmd() *cobra.Command {
 	return faucetTxCmd
 }
 
-// GetCmdMint is the CLI command for mining coin
+// txMint is the CLI command for minting coins to the sender address
 func txMint() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "mint",
@@ -55,7 +55,7 @@ func txMint() *cobra.Command {
 	return cmd
 }
 
-// GetCmdMintFor is the CLI command for mining coin
+// txMint is the CLI command for minting coins to a specified address
 func txMintFor() *cobra.Command {
 	return &cobra.Command{
 		Use:   "mintfor [address] [denom]",

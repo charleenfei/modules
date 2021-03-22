@@ -24,22 +24,29 @@ func (k Keeper) QueryWhenBrr(c context.Context, req *types.QueryWhenBrrRequest) 
 	}
 
 	mintTime := ctx.BlockTime().Unix()
-	m := k.getMintHistory(ctx, a.String())
-	isPresent := k.isPresent(ctx, m.Minter)
+	m := k.getMintHistory(ctx, a)
+	ma, err := sdk.AccAddressFromBech32(m.Minter)
+	if err != nil {
+		return nil, status.Error(codes.InvalidArgument, err.Error())
+	}
+
+	isPresent := k.isPresent(ctx, ma)
 	var timeLeft int64
 	if !isPresent {
-		timeLeft = 0
-	} else {
-		lastTime := time.Unix(m.Lasttime, 0)
-		currentTime := time.Unix(mintTime, 0)
+		return &types.QueryWhenBrrResponse{
+			TimeLeft: 0,
+		}, nil
+	}
 
-		lastTimePlusLimit := lastTime.Add(k.Limit).UTC()
-		isAfter := lastTimePlusLimit.After(currentTime)
-		if isAfter {
-			timeLeft = int64(lastTime.Add(k.Limit).UTC().Sub(currentTime).Seconds())
-		} else {
-			timeLeft = 0
-		}
+	lastTime := time.Unix(m.Lasttime, 0)
+	currentTime := time.Unix(mintTime, 0)
+
+	lastTimePlusLimit := lastTime.Add(k.Limit).UTC()
+	isAfter := lastTimePlusLimit.After(currentTime)
+	if isAfter {
+		timeLeft = int64(lastTime.Add(k.Limit).UTC().Sub(currentTime).Seconds())
+	} else {
+		timeLeft = 0
 	}
 
 	return &types.QueryWhenBrrResponse{

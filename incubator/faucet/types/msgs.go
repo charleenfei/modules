@@ -27,11 +27,11 @@ func (msg *MsgMint) Type() string { return TypeMint }
 
 // ValidateBasic runs stateless checks on the message
 func (msg *MsgMint) ValidateBasic() error {
-	_, err := sdk.ValAddressFromBech32(msg.Minter)
+	_, err := sdk.AccAddressFromBech32(msg.Minter)
 	if err != nil {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, msg.Minter)
 	}
-	_, err = sdk.ValAddressFromBech32(msg.Sender)
+	_, err = sdk.AccAddressFromBech32(msg.Sender)
 	if err != nil {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, msg.Minter)
 	}

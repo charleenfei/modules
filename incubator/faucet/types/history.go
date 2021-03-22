@@ -10,9 +10,9 @@ const (
 )
 
 // NewMining returns a new Mining Message
-func NewMintHistory(minter string, tally int64) *MintHistory {
+func NewMintHistory(minter sdk.AccAddress, tally int64) *MintHistory {
 	return &MintHistory{
-		Minter:   minter,
+		Minter:   minter.String(),
 		Lasttime: 0,
 		Tally:    tally,
 	}
@@ -26,7 +26,7 @@ func (msg MintHistory) Type() string { return TypeMintHistory }
 
 // ValidateBasic runs stateless checks on the message
 func (msg MintHistory) ValidateBasic() error {
-	_, err := sdk.ValAddressFromBech32(msg.Minter)
+	_, err := sdk.AccAddressFromBech32(msg.Minter)
 	if err != nil {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, msg.Minter)
 	}
