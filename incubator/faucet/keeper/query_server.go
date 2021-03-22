@@ -24,7 +24,7 @@ func (k Keeper) QueryWhenBrr(c context.Context, req *types.QueryWhenBrrRequest) 
 	}
 
 	mintTime := ctx.BlockTime().Unix()
-	m := k.getMining(ctx, a.String())
+	m := k.getMintHistory(ctx, a.String())
 	isPresent := k.isPresent(ctx, m.Minter)
 	var timeLeft int64
 	if !isPresent {

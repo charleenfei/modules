@@ -8,17 +8,11 @@ import (
 
 var (
 	_ sdk.Msg = &MsgMint{}
-	_ sdk.Msg = &MsgMining{}
 )
 
 const (
-	TypeMint   = "mint"
-	TypeMining = "mining"
+	TypeMint = "mint"
 )
-
-///////////////////////
-// MsgMint //
-///////////////////////
 
 // NewMsgMint is a constructor function for NewMsgMint
 func NewMsgMint(sender sdk.AccAddress, minter sdk.AccAddress, denom string) *MsgMint {
@@ -57,46 +51,4 @@ func (msg *MsgMint) GetSignBytes() []byte {
 // GetSigners defines whose signature is required
 func (msg *MsgMint) GetSigners() []sdk.AccAddress {
 	return []sdk.AccAddress{sdk.AccAddress(msg.Sender)}
-}
-
-///////////////////////
-// MsgMining //
-///////////////////////
-
-// NewMining returns a new Mining Message
-func NewMining(minter string, tally int64) *MsgMining {
-	return &MsgMining{
-		Minter:   minter,
-		Lasttime: 0,
-		Tally:    tally,
-	}
-}
-
-// Route should return the name of the module
-func (msg *MsgMining) Route() string { return RouterKey }
-
-// Type should return the action
-func (msg *MsgMining) Type() string { return TypeMining }
-
-// ValidateBasic runs stateless checks on the message
-func (msg *MsgMining) ValidateBasic() error {
-	_, err := sdk.ValAddressFromBech32(msg.Minter)
-	if err != nil {
-		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, msg.Minter)
-	}
-	return nil
-}
-
-// GetSignBytes encodes the message for signing
-func (msg *MsgMining) GetSignBytes() []byte {
-	panic("amino support disabled")
-}
-
-// GetSigners defines whose signature is required
-func (msg *MsgMining) GetSigners() []sdk.AccAddress {
-	addr, err := sdk.AccAddressFromBech32(msg.Minter)
-	if err != nil {
-		panic(err)
-	}
-	return []sdk.AccAddress{addr}
 }

@@ -7,14 +7,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/msgservice"
 )
 
-// RegisterInterfaces registers the faucet proto files
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgMint{},
-		&MsgMining{},
 	)
-
-	// register interface
 
 	msgservice.RegisterMsgServiceDesc(registry, &_Msg_serviceDesc)
 }

@@ -73,7 +73,7 @@ func (k Keeper) MintAndSend(ctx sdk.Context, msg *types.MsgMint) error {
 	}
 
 	// refuse mint in 24 hours
-	mining := k.getMining(ctx, msg.Sender)
+	mining := k.getMintHistory(ctx, msg.Sender)
 	if k.isPresent(ctx, msg.Sender) &&
 		time.Unix(int64(mining.Lasttime), 0).Add(k.Limit).UTC().After(time.Unix(mintTime, 0)) {
 		return types.ErrWithdrawTooOften
@@ -82,7 +82,7 @@ func (k Keeper) MintAndSend(ctx sdk.Context, msg *types.MsgMint) error {
 	newCoin := sdk.NewCoin(msg.Denom, sdk.NewInt(k.amount))
 	mining.Tally = mining.Tally + k.amount
 	mining.Lasttime = mintTime
-	k.setMining(ctx, msg.Sender, mining)
+	k.setMintHistory(ctx, msg.Sender, mining)
 	k.Logger(ctx).Info("Mint coin: %s", newCoin)
 	newCoins := sdk.NewCoins(newCoin)
 	if err := k.BankKeeper.MintCoins(ctx, types.ModuleName, newCoins); err != nil {
@@ -106,30 +106,29 @@ func (k Keeper) MintAndSend(ctx sdk.Context, msg *types.MsgMint) error {
 	return nil
 }
 
-// TODO: convert Mining message to just a type
-func (k Keeper) getMining(ctx sdk.Context, minter string) types.MsgMining {
+func (k Keeper) getMintHistory(ctx sdk.Context, minter string) types.MintHistory {
 	store := ctx.KVStore(k.storeKey)
 	if !k.isPresent(ctx, minter) {
-		return *types.NewMining(minter, 0)
+		return *types.NewMintHistory(minter, 0)
 	}
 
 	bz := store.Get([]byte(minter))
-	var mining types.MsgMining
-	k.cdc.MustUnmarshalBinaryBare(bz, &mining)
-	return mining
+	var history types.MintHistory
+	k.cdc.MustUnmarshalBinaryBare(bz, &history)
+	return history
 }
 
-func (k Keeper) setMining(ctx sdk.Context, minter string, mining types.MsgMining) {
-	if mining.Minter == "" {
+func (k Keeper) setMintHistory(ctx sdk.Context, minter string, history types.MintHistory) {
+	if history.Minter == "" {
 		return
 	}
 
-	if mining.Tally == 0 {
+	if history.Tally == 0 {
 		return
 	}
 
 	store := ctx.KVStore(k.storeKey)
-	store.Set([]byte(minter), k.cdc.MustMarshalBinaryBare(&mining))
+	store.Set([]byte(minter), k.cdc.MustMarshalBinaryBare(&history))
 }
 
 // IsPresent check if the name is present in the store or not
